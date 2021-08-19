@@ -3,24 +3,29 @@ import React from 'react'
 export const JournalEntry = () => {
     return (
         <div className="journal__entry pointer">
-            <div
+            
+            <div 
+                className="journal__entry-picture"
                 style={{
                     backgroundSize: 'cover',
-                    backgroundImage:
-                        'url(https://3.bp.blogspot.com/-JfL1o7oSnKI/VmodObHF9cI/AAAAAAAABLY/nKKRXw0-yiU/s1600/homero_456_336.jpg)',
+                    backgroundImage: 'url(https://earthsky.org/upl/2018/12/comet-wirtanen-Jack-Fusco-dec-2018-Anza-Borrego-desert-CA-e1544613895713.jpg)'
                 }}
-                className="journal__entry-picture"
             ></div>
+
             <div className="journal__entry-body">
-                <p className="journal__entry-title">un nuevo dia</p>
+                <p className="journal__entry-title">
+                    Un nuevo día
+                </p>
                 <p className="journal__entry-content">
-                    lorem ipsum askjdlkasd nlasjdlkasjdlajsldkjalskdjalskjd
+                    Reprehenderit id in duis consectetur deserunt veniam fugiat.
                 </p>
             </div>
+
             <div className="journal__entry-date-box">
                 <span>Monday</span>
-                <h4>28th</h4>
+                <h4>28</h4>
             </div>
+
         </div>
     )
 }
