@@ -1,11 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {firebase} from '../firebase/firebase-config'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect,
-} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Redirect} from 'react-router-dom'
 
 import {AuthRouter} from './AuthRouter'
 import {JournalScreen} from '../components/journal/JournalScreen'
