@@ -1,9 +1,11 @@
 import React, {useEffect, useRef} from 'react'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import {activeNote} from '../../actions/notes'
 import {useForm} from '../../hooks/useForm'
 import {NotesAppBar} from './NotesAppBar'
 
 export const NoteScreen = () => {
+    const dispatch = useDispatch()
     const {active: note} = useSelector(state => state.notes)
     const [formValues, handleInputChange, reset] = useForm(note)
     const {body, title, url} = formValues
@@ -11,11 +13,15 @@ export const NoteScreen = () => {
     const activeId = useRef(note.id)
 
     useEffect(() => {
-        if (note.id !== activeId) {
+        if (note.id !== activeId.current) {
             reset(note)
             activeId.current = note.id
         }
     }, [reset, note])
+
+    useEffect(() => {
+        dispatch(activeNote(formValues.id, {...formValues}))
+    }, [dispatch, formValues])
 
     return (
         <div className="notes__main-content">
@@ -27,25 +33,22 @@ export const NoteScreen = () => {
                     placeholder="Some awesome title"
                     className="notes__title-input"
                     autoComplete="off"
-                    value={title}
                     name="title"
+                    value={title}
                     onChange={handleInputChange}
                 />
 
                 <textarea
                     placeholder="What happened today"
                     className="notes__textarea"
-                    value={body}
                     name="body"
+                    value={body}
                     onChange={handleInputChange}
                 ></textarea>
 
                 {url && (
                     <div className="notes__image">
-                        <img
-                            src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg"
-                            alt="imagen"
-                        />
+                        <img src={url} alt="imagen" />
                     </div>
                 )}
             </div>
